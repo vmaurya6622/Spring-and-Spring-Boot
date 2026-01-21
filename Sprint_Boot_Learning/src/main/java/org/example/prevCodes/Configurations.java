@@ -1,4 +1,4 @@
-package org.example;
+package org.example.prevCodes;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

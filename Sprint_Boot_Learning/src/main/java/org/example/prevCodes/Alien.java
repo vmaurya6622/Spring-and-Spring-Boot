@@ -1,6 +1,5 @@
-package org.example;
+package org.example.prevCodes;
 import org.example.Interfaces.computer;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 // IoC: Spring manages the lifecycle; you don't 'new' it yourself.

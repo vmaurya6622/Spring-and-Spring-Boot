@@ -1,4 +1,4 @@
-package org.example;
+package org.example.prevCodes;
 /*
    Autowiring is used to automatically inject the required bean to the spring container.
    -> autowiring is used in constructor injection.

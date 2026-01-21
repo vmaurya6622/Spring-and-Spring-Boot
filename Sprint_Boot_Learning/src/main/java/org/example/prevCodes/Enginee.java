@@ -1,4 +1,4 @@
-package org.example;
+package org.example.prevCodes;
 /*
 Interface to show dependency injection:
  */

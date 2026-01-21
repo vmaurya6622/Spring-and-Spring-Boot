@@ -1,4 +1,4 @@
-package org.example;
+package org.example.prevCodes;
 //import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 

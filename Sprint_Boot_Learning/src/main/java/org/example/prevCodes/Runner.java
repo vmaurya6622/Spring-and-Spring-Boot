@@ -1,9 +1,9 @@
-package org.example;
+package org.example.prevCodes;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
-public class    Runner implements CommandLineRunner {
+public class Runner implements CommandLineRunner {
 
     private final Alien alien;
 

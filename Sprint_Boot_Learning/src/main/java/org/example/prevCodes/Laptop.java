@@ -1,4 +1,4 @@
-package org.example;
+package org.example.prevCodes;
 import org.example.Interfaces.computer;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;

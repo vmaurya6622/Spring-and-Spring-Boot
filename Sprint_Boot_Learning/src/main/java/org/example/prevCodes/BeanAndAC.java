@@ -1,4 +1,4 @@
-package org.example;
+package org.example.prevCodes;
 /*
      -> Spring IoC is the core of spring framework. it creates, manages objects
         and lifecycle of beans.
