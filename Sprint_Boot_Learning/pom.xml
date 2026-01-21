@@ -49,7 +49,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <!-- Tell the plugin exactly which main class to repackage -->
-                    <mainClass>org.example.SpringBootLearningApplication</mainClass>
+                    <mainClass>org.example.main</mainClass>
                 </configuration>
             </plugin>
         </plugins>
