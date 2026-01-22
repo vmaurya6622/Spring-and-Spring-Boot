@@ -1,6 +1,6 @@
 package org.example;
 /*
-    it tells the spring that for which class wee have to create beans.
+    -> it tells the spring that for which class wee have to create beans.
     -> it's a replacement for beans.xml
     -> jabki beans spring ko ye btata hai ki jis method se jo object banega, usko spring manage kare.
     -> method se return hone wala object spring bean hota hai aur uska default scope singleton hota h.
