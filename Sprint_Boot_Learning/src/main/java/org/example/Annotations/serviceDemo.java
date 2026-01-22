@@ -6,9 +6,9 @@ package org.example.Annotations;
     -> Repository: database se baat karta hai.
     -> it implement business logics and acts as a bridge between controller and repository.
         @Component	Generic Spring bean
-        @Service	Business logic layer
-        @Controller	Web layer
-        @Repository	Data access layer
+        @Service	Business logic layer, it tells what actually we have to do.
+        @Controller	Web layer, it checks the requests.
+        @Repository	Data access layer, it tells from where we have to take the data.
  */
 
 import org.springframework.boot.SpringApplication;
@@ -34,7 +34,7 @@ class ControllerForCienaServices{
         this.cienaServices = cienaServices;
     }
     @GetMapping("/cienaUser")
-//    @ResponseBody   // it will work with/without this 
+//    @ResponseBody   // it will work with/without this
     public String DisplayEmployeeName(){
         return cienaServices.DisplayEmployeeName();
     }
