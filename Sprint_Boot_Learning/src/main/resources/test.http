@@ -1,0 +1,28 @@
+POST http://localhost:8080/users/bulk
+Content-Type: application/json
+
+[
+  {
+    "id": 1,
+    "name": "vishal",
+    "email": "vma"
+  },
+  {
+    "id": 2,
+    "name": "rahul",
+    "email": "rahul@gmail.com"
+  },
+  {
+    "id": 3,
+    "name": "aman",
+    "email": "aman@gmail.com"
+  }
+]
+### Get all users
+GET http://localhost:8080/users
+
+### Delete user by ID
+DELETE http://localhost:8080/users/1
+
+### Get all users
+GET http://localhost:8080/users/1
