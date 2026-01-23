@@ -5,17 +5,17 @@ Content-Type: application/json
   {
     "id": 1,
     "name": "vishal",
-    "email": "vma"
+    "age": 15
   },
   {
     "id": 2,
     "name": "rahul",
-    "email": "rahul@gmail.com"
+    "age": 20
   },
   {
     "id": 3,
     "name": "aman",
-    "email": "aman@gmail.com"
+    "age": 52
   }
 ]
 ### Get all users
@@ -25,4 +25,16 @@ GET http://localhost:8080/users
 DELETE http://localhost:8080/users/1
 
 ### Get all users
-GET http://localhost:8080/users/1
+GET http://localhost:8080/users
+
+### Put a user
+PUT http://localhost:8080/users/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "vishal updated",
+  "age": 25
+}
+
+### Using patch

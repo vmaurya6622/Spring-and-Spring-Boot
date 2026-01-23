@@ -14,7 +14,7 @@ import java.util.List;
 class User{
     private int id;
     private String name;
-    private int age;
+    private Integer age; // int cannot be null but Integer which is a wrapper class can be null.
     public User(){
 
     }
@@ -84,14 +84,53 @@ class UserController {
 
     @GetMapping("/{id}")
     public User getUser(@PathVariable int id) {
-        return users.get(id);
+        return users.stream()
+                .filter(u -> u.getId() == id)
+                .findFirst()
+                .orElse(null);
     }
 
     @DeleteMapping("/{id}")
     public String deleteUser(@PathVariable int id) {
-        users.remove(id);
-        return "Deleted fu user";
+        boolean removed = users.removeIf(u -> u.getId() == id);
+        return removed ? "User deleted" : "User not found";
     }
+
+
+    @PutMapping({"/{id}"})
+    public String updateUser(@PathVariable int id, @RequestBody User userUpdate) {
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getId() == id) {
+                userUpdate.setId(id);
+                users.set(i, userUpdate);
+                return "User " + id + " replaced (age is now null)";
+            }
+        }
+        return "User "+id+" updated";
+    }
+
+//    @PatchMapping("/{id}")
+//    public String patchUser(@PathVariable int id,
+//                            @RequestBody User updates) {
+//
+//        for (User user : users) {
+//            if (user.getId() == id) {
+//
+//                // update only if value is present
+//                if (updates.getName() != null) {
+//                    user.setName(updates.getName());
+//                }
+//
+//                if (updates.getAge() != null) {
+//                    user.setAge(updates.getAge());
+//                }
+//
+//                return "User " + id + " partially updated";
+//            }
+//        }
+//        return "User not found";
+//    }
+
 }
 @SpringBootApplication
 public class RestApi {
