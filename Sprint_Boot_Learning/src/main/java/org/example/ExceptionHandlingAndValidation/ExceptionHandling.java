@@ -3,7 +3,9 @@ package org.example.ExceptionHandlingAndValidation;
     -> it ensures that when code throws error , they are caught and handled properly so that code doesn't break
     main tools include @ExceptionHandler for specific exceptions and @ControllerAdvice for global handling of errors.
  */
-
+/*
+    IMPORTANT: uncomment ControllerAdvice at line number 71  before running this file
+ */
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.HttpStatus;
@@ -13,11 +15,11 @@ import org.springframework.web.bind.annotation.*;
 
 //@RestController
 //@RequestMapping("students")
-class Student{
+class Soldier{
     private Integer id;
     private String name;
     private Integer age;
-    public Student(Integer id, String name, Integer age) {
+    public Soldier(Integer id, String name, Integer age) {
         this.id = id;
         this.name = name;
         this.age = age;
@@ -55,18 +57,18 @@ class StudentNotFoundException extends RuntimeException{
 }
 
 @RestController
-@RequestMapping("/students")
+@RequestMapping("/soldier")
 class StudentController{
     @GetMapping("/{id}")
-    public Student getStudent(@PathVariable Integer id){
-        // if the student is not found with this id then exception will be handled.
+    public Soldier getStudent(@PathVariable Integer id){
+        // if the Soldier is not found with this id then exception will be handled.
         if(id!=1)
-            throw new StudentNotFoundException("Student not found with id: "+id); // this will be printed if the student with id other than 1 is checked.
-        return new Student(1,"Vishal",22); // i am presuming that the database has only one student.
+            throw new StudentNotFoundException("Soldier not found with id: "+id); // this will be printed if the Soldier with id other than 1 is checked.
+        return new Soldier(1,"Vishal",22); // i am presuming that the database has only one Soldier.
     }
 }
 
-@ControllerAdvice
+//@ControllerAdvice
 class GlobalExceptionHandler{
     @ExceptionHandler(StudentNotFoundException.class)
     public ResponseEntity<String> handleStudentNotFound(StudentNotFoundException ex) {

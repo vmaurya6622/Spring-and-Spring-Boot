@@ -6,3 +6,15 @@ GET http://localhost:8080/students/5
 ### This will not give any error as student with id 1 is added so it will return the output.
 GET http://localhost:8080/students/1
 
+
+### ======== Now for GlobalExceptionHandling.java File ========
+
+### It will print that student was not found with id 5
+GET http://localhost:8080/soldierz/5
+
+### Now testing for id <0
+GET http://localhost:8080/soldierz/-1
+
+### This will be handled by Global error handler and will give Status code 500 ISE(Internal Server Error).
+GET http://localhost:8080/soldierz/hp
+
