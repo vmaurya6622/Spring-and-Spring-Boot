@@ -43,104 +43,125 @@ import java.util.List;
 
 */
 @Entity
-@Table(name="student")
-class Student{
+@Table(name = "employee")
+class Employee {
+
     @Id
     private Integer id;
     private String name;
     private Integer age;
+
+    // getters & setters
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public Integer getAge() {
         return age;
     }
+
     public void setAge(Integer age) {
         this.age = age;
     }
-    public void setId(Integer id){
-        this.id = id;
-    }
-    public Integer getId(){
-        return this.id;
-    }
-    public void setName(String name){
-        this.name = name;
-    }
-    public String getName(){
-        return this.name;
-    }
 }
-interface StudentRepo extends JpaRepository<Student,Integer> {
-    Student findByName(String name);
-    List<Student> findByAge(Integer age);
+
+/* ================= Repository ================= */
+
+interface EmployeeRepo extends JpaRepository<Employee, Integer> {
+
+    List<Employee> findByName(String name);
+
+    List<Employee> findByAge(Integer age);
 }
-/*
-    Now we are going to add a service layer to our code. so in here only the services are provided to the 
-    working profile that are gonna work.
-    -> here, the working code gives an essence of what are the task that the code is going to do.
- */
+
+/* ================= Service ================= */
 
 @Service
-class StudentService{
-    private final StudentRepo StudentRepo;
+class EmployeeService {
 
-    public StudentService(StudentRepo StudentRepo) {
-        this.StudentRepo = StudentRepo;
+    private final EmployeeRepo employeeRepo;
+
+    public EmployeeService(EmployeeRepo employeeRepo) {
+        this.employeeRepo = employeeRepo;
     }
-    public Student SaveStudent(Student student){
-        return StudentRepo.save(student);
+
+    public Employee saveEmployee(Employee employee) {
+        return employeeRepo.save(employee);
     }
-    
-    public Student findByName(String name){
-        return this.StudentRepo.findByName(name);
+
+    public List<Employee> findByName(String name) {
+        return employeeRepo.findByName(name);
     }
-    
-    public List<Student> findByAge(Integer age){
-        return this.StudentRepo.findByAge(age);
+
+    public List<Employee> findByAge(Integer age) {
+        return employeeRepo.findByAge(age);
     }
-    public List<Student> findAll(){
-        return this.StudentRepo.findAll();    
+
+    public List<Employee> findAll() {
+        return employeeRepo.findAll();
     }
-    public void deletebyId(Integer id){
-        this.StudentRepo.deleteById(id);
+
+    public void deleteById(Integer id) {
+        employeeRepo.deleteById(id);
     }
 }
-/*
-    -> this class will help the Student service to get control over the services it will basically define what
-       essentially a service will do in the code
- */
+
+/* ================= Controller ================= */
+
 @RestController
-@RequestMapping("studentApp")
-class StudentController{
-    private final StudentService studentService;
-    public StudentController( StudentService studentService) {
-        this.studentService = studentService;
+@RequestMapping("/employeeApp")
+class EmployeeController {
+
+    private final EmployeeService employeeService;
+
+    public EmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
     }
-    @PostMapping//this post mapping is used to add an element of Student in the list
-    public Student addStudent(@RequestBody Student student){
-        return studentService.SaveStudent(student);
+
+    @PostMapping
+    public Employee addEmployee(@RequestBody Employee employee) {
+        return employeeService.saveEmployee(employee);
     }
 
     @GetMapping("/by-name/{name}")
-    public Student getStudentByName(@PathVariable String name){
-        return this.studentService.findByName(name);
-    }
-    @GetMapping("/by-age/{age}")
-    public List<Student> getStudentByAge(@PathVariable Integer age){
-        return this.studentService.findByAge(age);
-    }
-    @GetMapping
-    public List<Student> findAll(){
-        return this.studentService.findAll();
-    }
-    @DeleteMapping("/{id}")
-    public String deleteStudentById(@PathVariable Integer id){
-        studentService.deletebyId(id);
-        return "Student is deleted successfully with ID: "+id;
+    public List<Employee> getByName(@PathVariable String name) {
+        return employeeService.findByName(name);
     }
 
+    @GetMapping("/by-age/{age}")
+    public List<Employee> getByAge(@PathVariable Integer age) {
+        return employeeService.findByAge(age);
+    }
+
+    @GetMapping
+    public List<Employee> getAllEmployees() {
+        return employeeService.findAll();
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteEmployee(@PathVariable Integer id) {
+        employeeService.deleteById(id);
+        return "Employee deleted successfully with ID: " + id;
+    }
 }
+
+/* ================= Main ================= */
 
 @SpringBootApplication
 public class springJPADemo {
+
     public static void main(String[] args) {
         SpringApplication.run(springJPADemo.class, args);
     }

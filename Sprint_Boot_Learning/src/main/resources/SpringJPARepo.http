@@ -1,7 +1,8 @@
 ### this is the test file that is going to be used for springJPADemo.java file
 ### GET request to example server
 ### Add a new student
-POST http://localhost:8080/students
+### Add employee
+POST http://localhost:8080/employeeApp
 Content-Type: application/json
 
 {
@@ -10,24 +11,31 @@ Content-Type: application/json
   "age": 22
 }
 
-### Add another student
-POST http://localhost:8080/students
+### Add another employee
+POST http://localhost:8080/employeeApp
 Content-Type: application/json
 
 {
   "id": 2,
   "name": "Rahul",
-  "age": 22
+  "age": 23
 }
 
-### Get all students
-GET http://localhost:8080/students
+### Get all employees
+GET http://localhost:8080/employeeApp
 
-### Get student by name
-GET http://localhost:8080/students/Vishal
 
-### Get students by age
-GET http://localhost:8080/students/age/22
+### Get employee by name
+GET http://localhost:8080/employeeApp/by-name/Vishal
 
-### Delete student by ID
-DELETE http://localhost:8080/students/1
+
+### this will not return anything because there is no user named sakshi added
+GET http://localhost:8080/employeeApp/by-name/sakshi
+
+
+### Get employees by age
+GET http://localhost:8080/employeeApp/by-age/22
+
+
+### Delete employee by ID
+DELETE http://localhost:8080/employeeApp/1
