@@ -1,7 +1,6 @@
 ### this test code is for testing ExceptionHandling.java
 ### as described in the code database has only one student with id = 1 and if you ask with another id then it will
 ### throw an error.
-
 GET http://localhost:8080/students/5
 
 ### This will not give any error as student with id 1 is added so it will return the output.
