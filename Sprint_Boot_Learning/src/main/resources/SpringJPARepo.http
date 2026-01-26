@@ -1,0 +1,33 @@
+### this is the test file that is going to be used for springJPADemo.java file
+### GET request to example server
+### Add a new student
+POST http://localhost:8080/students
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "Vishal",
+  "age": 22
+}
+
+### Add another student
+POST http://localhost:8080/students
+Content-Type: application/json
+
+{
+  "id": 2,
+  "name": "Rahul",
+  "age": 22
+}
+
+### Get all students
+GET http://localhost:8080/students
+
+### Get student by name
+GET http://localhost:8080/students/Vishal
+
+### Get students by age
+GET http://localhost:8080/students/age/22
+
+### Delete student by ID
+DELETE http://localhost:8080/students/1

@@ -1,3 +1,4 @@
+### This is the test queries for PostGresJPA.java file
 POST http://localhost:8080/users/bulk
 Content-Type: application/json
 
