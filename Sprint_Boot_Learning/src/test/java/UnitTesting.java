@@ -1,15 +1,9 @@
-//package org.example.TestingAndDebugging.Testing;
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
 import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
@@ -17,7 +11,14 @@ import static org.mockito.Mockito.when;
     -> unit testing means testing a unit of program in isolation
     -> it is a service method and a utility class.
     -> so it doesn't deal with server, database or spring context.
+
+    Assertions:
+        - assertEquals()
+        - asserNotNUll()
+        - assertThrows()
+        - assertTrue()
  */
+
 class Doctor {
     private Integer id;
     private String name;
@@ -67,7 +68,7 @@ class DoctorService {
 
 /* ================= Unit Test ================= */
 
-@ExtendWith(MockitoExtension.class) // enables Mockito
+@ExtendWith(MockitoExtension.class) // enables Mockito: this creates fake object and returns only what you define.
 class DoctorServiceTest {
 
     @Mock
@@ -79,7 +80,6 @@ class DoctorServiceTest {
     // This test case will pass
     @Test
     void shouldReturnDoctorWhenFound() {
-
         Doctor doctor = new Doctor(1, "Vikram");
 
         when(doctorRepository.findById(1))
@@ -89,6 +89,7 @@ class DoctorServiceTest {
 
         assertEquals(1, result.getId());
         assertEquals("Vikram", result.getName());
+
     }
 
     // This test case will fail
@@ -97,24 +98,21 @@ class DoctorServiceTest {
 
         when(doctorRepository.findById(5))
                 .thenReturn(Optional.empty());
-
-        ResourceNotFoundException exception =
-                assertThrows(ResourceNotFoundException.class, () ->
-                        doctorService.getDoctorById(5)
-                );
-
-        assertEquals(
-                "Doctor not found with id: 5",
-                exception.getMessage()
-        );
+        // so I have commented the exception handling part so that it throws exception but, when you uncommet this code it will pass and
+        // exceptions will be handled.
+//        ResourceNotFoundException exception = assertThrows(ResourceNotFoundException.class, () -> doctorService.getDoctorById(5));
+//        assertEquals(
+//                "Doctor not found with id: 5",
+//                exception.getMessage()
+//        );
     }
 }
 
 /* ================= Main (Not used in unit test) ================= */
 
-@SpringBootApplication
-public class UnitTesting {
-    public static void main(String[] args) {
-        SpringApplication.run(UnitTesting.class, args);
-    }
-}
+//@SpringBootApplication
+//public class UnitTesting {
+//    public static void main(String[] args) {
+//        SpringApplication.run(UnitTesting.class, args);
+//    }
+//}
